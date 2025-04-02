@@ -1,17 +1,19 @@
 import React, { useRef } from 'react';
 import { useStateCustom } from '@packages/hooks';
-import { AnimatePresence, Button, Checkbox, Input } from '@packages/ui';
+import { AnimatePresence, Button } from '@packages/ui';
 
 import { useModules } from '@/features';
+import { constants } from '@/shared/utils';
 
 import styles from './styles.module.scss';
 
 const BuildsManager = () => {
     const ref = useRef(null);
     const file = useStateCustom(null);
-    const { downloadModule, getAvailableModules, deleteBuild } = useModules();
+    const { downloadModule, getAvailableModules, deleteBuild, activate } = useModules();
     const { mutate: downloadBuildMutate } = downloadModule();
     const { mutate: deleteBuildMutate } = deleteBuild();
+    const { mutate: activateMutate } = activate();
     const { data: availableModulesData, refetch } = getAvailableModules();
 
     const handleDownloadBuild = () => {
@@ -25,19 +27,21 @@ const BuildsManager = () => {
     };
 
     const handleDeleteBuild = (i: any) => {
-        deleteBuildMutate(
-            { name: i.manifest.name, version: i.manifest.version },
-            {
-                onSuccess: () => {
-                    file.set(null);
-                    ref.current.value = '';
-                    refetch();
-                },
-            }
-        );
+        deleteBuildMutate(i.manifest, {
+            onSuccess: () => {
+                refetch();
+            },
+        });
     };
 
-    console.log(availableModulesData);
+    const handleActivate = (i: any) => {
+        console.log(i);
+        activateMutate(i.manifest, {
+            onSuccess: () => {
+                refetch();
+            },
+        });
+    };
 
     return (
         <div className={styles.wrapper}>
@@ -69,20 +73,26 @@ const BuildsManager = () => {
                                 <div className={styles.builds}>
                                     {value.builds.map((i: any) => {
                                         const latest = i.buildName === 'latest';
+                                        const url = `${constants.origin}/standalone/${i.manifest.name}/${i.manifest.version}`;
 
                                         return (
                                             <div key={i.manifest.version} className={styles.build}>
-                                                <div className={styles.version}>v_{i.manifest.version}</div>
-                                                <Button style={{ backgroundColor: 'green' }} disabled={latest}>
-                                                    {latest ? 'активна' : 'активировать'}
-                                                </Button>
-                                                <Button
-                                                    style={{ backgroundColor: latest ? 'gray' : 'red' }}
-                                                    disabled={latest}
-                                                    onClick={() => handleDeleteBuild(i)}
-                                                >
-                                                    удалить
-                                                </Button>
+                                                <div className={styles.buttons}>
+                                                    <div className={styles.version}>v_{i.manifest.version}</div>
+                                                    <Button style={{ backgroundColor: 'green' }} disabled={latest} onClick={() => handleActivate(i)}>
+                                                        {latest ? 'активна' : 'активировать'}
+                                                    </Button>
+                                                    <Button
+                                                        style={{ backgroundColor: latest ? 'gray' : 'red' }}
+                                                        disabled={latest}
+                                                        onClick={() => handleDeleteBuild(i)}
+                                                    >
+                                                        удалить
+                                                    </Button>
+                                                </div>
+                                                <div className={styles.link} onClick={() => window.open(url, '_blank')}>
+                                                    {url}
+                                                </div>
                                             </div>
                                         );
                                     })}

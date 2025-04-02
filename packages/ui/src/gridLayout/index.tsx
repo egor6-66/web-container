@@ -5,12 +5,11 @@ import classNames from 'classnames';
 
 import { IData, IProps } from './interfaces';
 
-import 'react-grid-layout/css/styles.css';
-import 'react-resizable/css/styles.css';
+import './styles.css';
 import styles from './styles.module.scss';
 
 const GridLayout = (props: IProps) => {
-    const { children, items, className } = props;
+    const { children, items, className, ...layoutProps } = props;
     const ResponsiveLayout = useMemo(() => WidthProvider(Responsive), []);
     const windowsSize = useWindowSize();
 
@@ -27,7 +26,7 @@ const GridLayout = (props: IProps) => {
 
             return acc;
         }, defaultData);
-    }, [items]);
+    }, [items, layoutProps.isResizable, layoutProps.isDraggable]);
 
     const cols = 10;
     const rows = 10;
@@ -35,6 +34,7 @@ const GridLayout = (props: IProps) => {
 
     return (
         <ResponsiveLayout
+            {...layoutProps}
             maxRows={rows}
             breakpoints={{ lg: 5000 }}
             rowHeight={rowHeight}

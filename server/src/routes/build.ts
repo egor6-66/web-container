@@ -12,15 +12,37 @@ function build(ws: WS.IWS) {
     const { io, clients } = ws;
     const router = express.Router();
 
-    router.delete('/build', async (req: any, res: any) => {
+    router.delete('/build', async (req, res) => {
         try {
             const { name, version, msg } = req.query;
             clients.forEach((i) => {
                 io.to(i).emit('receiveMessage', msg);
             });
-            fs.rmSync(path.join(pathToModulesDir, name, version), { recursive: true });
+            fs.rmSync(path.join(pathToModulesDir, String(name), String(version)), { recursive: true });
 
             res.status(200).send('');
+        } catch (e) {
+            res.status(500).end(e.message);
+        }
+    });
+
+    router.post('/activate', async function (req, res) {
+        try {
+            const body = req.body;
+            const pathToModule = path.join(pathToModulesDir, body.name);
+            const pathToBuild = path.join(pathToModule, body.version);
+            const pathToLatest = path.join(pathToModule, 'latest');
+
+            if (!fs.existsSync(pathToLatest)) {
+                fs.renameSync(pathToBuild, pathToLatest);
+            } else {
+                const manifest = fs.readFileSync(path.join(pathToLatest, 'manifest.json'), 'utf8');
+                const parseManifest = JSON.parse(manifest);
+                fs.renameSync(pathToLatest, path.join(pathToModule, parseManifest.version));
+                fs.renameSync(pathToBuild, pathToLatest);
+            }
+
+            res.status(200).end();
         } catch (e) {
             res.status(500).end(e.message);
         }

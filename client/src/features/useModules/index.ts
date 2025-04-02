@@ -44,6 +44,16 @@ function useModules() {
         });
     };
 
+    const activate = () => {
+        return useMutation({
+            mutationFn: async (data: any) => {
+                await axios.post(`/activate`, data);
+
+                return {};
+            },
+        });
+    };
+
     const deleteBuild = () => {
         return useMutation({
             mutationFn: async (data: any) => {
@@ -56,7 +66,7 @@ function useModules() {
         });
     };
 
-    return { getAvailableModules, downloadModule, getModule, deleteBuild };
+    return { getAvailableModules, downloadModule, getModule, deleteBuild, activate };
 }
 
 export default useModules;

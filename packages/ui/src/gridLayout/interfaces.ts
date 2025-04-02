@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Layout } from 'react-grid-layout';
+import { ItemCallback, Layout, ReactGridLayoutProps } from 'react-grid-layout';
 
 export interface IItem {
     name: string;
@@ -7,11 +7,13 @@ export interface IItem {
     grid: Omit<Layout, 'i'>;
 }
 
-export interface IProps {
+// @ts-ignore
+export interface IProps extends ReactGridLayoutProps {
     items: Items;
     children: (item: IItem, index: number) => ReactNode;
-    className?: string;
+    // className?: string;
 }
+
 export interface IData {
     layout: Array<Layout>;
     children: Array<ReactNode>;

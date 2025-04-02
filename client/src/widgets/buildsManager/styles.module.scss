@@ -28,34 +28,48 @@
   }
 
   .modules {
-    @include mixins.box-size(100%, auto);
+    @include mixins.box-size(100%, 500px);
     @include mixins.flex-column;
     gap: 20px;
+    flex: 1;
+    overflow: auto;
 
     .module {
-      @include mixins.box-size(100%, auto);
+      @include mixins.box-size(100%, 100%);
       @include mixins.flex-column;
       background-color: var(--bg-substrate);
       border-radius: var(--border-radius);
       padding: 12px;
       gap: 12px;
 
-      .name{
+      .name {
         @include mixins.box-size(100%, auto);
         text-align: center;
       }
+
       .builds {
-        @include mixins.box-size(100%, auto);
+        @include mixins.box-size(100%, 100%);
         @include mixins.flex-column;
         gap: 12px;
-
+        flex-direction: column-reverse;
         .build {
           @include mixins.box-size(100%, auto);
-          @include mixins.flex(flex-start, center);
+          @include mixins.flex-column;
           @include mixins.text(var(--text-primary), 16px, 700);
           background-color: var(--bg-primary);
           padding: 12px;
           gap: 12px;
+
+          .link {
+            color: var(--link);
+            cursor: pointer;
+          }
+
+          .buttons {
+            @include mixins.box-size(100%, auto);
+            @include mixins.flex(flex-start, center);
+            gap: 6px;
+          }
         }
       }
     }

@@ -6,16 +6,22 @@
   @include mixins.flex-column;
   gap: 12px;
 
-
   .header {
     @include mixins.box-size(100%, 40px);
     @include mixins.flex(space-between, center);
     padding: 12px;
   }
 
-  .content {
+  .widgets {
     @include mixins.box-size(100%, 100%);
     @include mixins.flex-column;
+    padding: 12px;
     gap: 12px;
+
+    .grid {
+      @include mixins.box-size(100%, 100%);
+      flex: 1;
+      overflow: auto;
+    }
   }
 }

@@ -1,0 +1,47 @@
+@use '@packages/styles/src/mixins';
+
+.wrapper {
+  @include mixins.box-size(100%, 100%);
+  @include mixins.text(var(--text-primary), 14px);
+  @include mixins.flex-column;
+
+  .header {
+    @include mixins.box-size(100%, auto);
+    @include mixins.flex(space-between, center);
+    padding: 0 12px;
+
+    .layoutControls{
+      @include mixins.flex(center, center);
+      gap: 12px;
+
+      .toggleLayoutRedactor {
+        @include mixins.box-min-size(30px, 30px);
+        @include mixins.flex(center, center);
+        cursor: pointer;
+        transition: box-shadow 0.25s;
+        border-radius: 50%;
+
+        path {
+          fill: #0046FF;
+        }
+
+        &_active {
+          box-shadow: 0 0 18px 6px #0046FF;
+        }
+      }
+    }
+
+  }
+
+  .widgets {
+    @include mixins.box-size(100%, 100%);
+    @include mixins.flex-column;
+    gap: 12px;
+
+    .grid {
+      @include mixins.box-size(100%, 100%);
+      flex: 1;
+      overflow: auto;
+    }
+  }
+}
