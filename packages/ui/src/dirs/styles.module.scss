@@ -1,0 +1,55 @@
+@use '@packages/styles/src/mixins';
+
+.wrapper {
+  @include mixins.box-size(100%, 100%);
+  @include mixins.flex-column;
+  gap: 12px;
+
+  .header {
+    @include mixins.box-size(100%, auto);
+    @include mixins.flex(flex-start, center);
+    gap: 12px;
+    background-color: var(--bg-substrate);
+    border-radius: 4px;
+  }
+
+  .listContainer {
+    @include mixins.flex;
+    @include mixins.box-size(100%, 200px);
+    background-color: var(--bg-substrate);
+    border-radius: 4px;
+    overflow: auto;
+    padding: 6px;
+
+
+    .list {
+      @include mixins.box-size(100%, auto);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, 80px);
+      overflow: auto;
+
+      .item {
+        @include mixins.box-size(80px, 80px);
+        @include mixins.flex-column(center, center);
+        @include mixins.text(var(--text-primary), 12px, 400);
+        gap: 8px;
+        transition: background-color 0.2s;
+        .name {
+          text-align: center;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          width: 60px;
+        }
+      }
+
+      .hovered {
+        transition: background-color 0.2s;
+        &:hover {
+          background-color: var(--bg-primary);
+          border-radius: 4px;
+        }
+      }
+    }
+  }
+}

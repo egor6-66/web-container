@@ -1,0 +1,43 @@
+@use '@packages/styles/src/mixins';
+
+.wrapper {
+  @include mixins.box-size(100%, 100%);
+  @include mixins.flex-column;
+  padding: 12px;
+  gap: 18px;
+  background-color: var(--bg-primary);
+  border-radius: 12px;
+
+  .title {
+    @include mixins.text(var(--text-primary), 16px);
+  }
+
+  .addContainer {
+    @include mixins.box-size(100%, 40px);
+    @include mixins.flex(flex-start, center);
+    gap: 12px;
+  }
+
+  .list {
+    @include mixins.box-size(100%, 100%);
+    @include mixins.flex-column;
+    gap: 6px;
+
+    .item {
+      @include mixins.box-size(100%, auto);
+      @include mixins.flex(flex-start, center);
+      gap: 12px;
+
+      .checkConnect {
+        @include mixins.box-size(18px, 18px);
+        @include mixins.flex(center, center);
+        background-color: red;
+        border-radius: 50%;
+      }
+
+      .connected{
+        background-color: #1BA439;
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+@use '@packages/styles/src/mixins';
+
+.wrapper {
+  @include mixins.box-size(100%, 100%);
+  @include mixins.flex-column;
+  padding: 12px;
+  background-color: var(--bg-primary);
+  border-radius: 12px;
+  flex: 1;
+  gap: 12px;
+
+  .dirs{
+    @include mixins.box-size(100%, auto);
+    @include mixins.flex;
+    flex: 1;
+  }
+}

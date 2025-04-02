@@ -1,0 +1,33 @@
+services:
+  node_server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: node
+    ports:
+      - "9808:9808"
+    volumes:
+      - ./modules:/modules
+      - ./configs:/configs
+
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: nginx
+    env_file:
+      - .env.development
+    environment:
+      NGINX_ENVSUBST_OUTPUT_DIR: /etc/nginx
+    ports:
+      - "443:443"
+    restart: always
+    volumes:
+      - ./modules:/modules
+      - ./configs:/configs
+      - ./client:/client
+    depends_on:
+      - node_server
+volumes:
+  modules: {}
+  configs: {}

@@ -1,0 +1,9 @@
+{
+  "name": "@packages/hooks",
+  "version": "1.0.0",
+  "main": "./src/index.ts",
+  "dependencies": {
+    "@tanstack/react-query": "^5.59.0",
+    "react-use-zustand": "^1.0.25"
+  }
+}

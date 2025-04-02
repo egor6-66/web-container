@@ -1,0 +1,40 @@
+@use '@packages/styles/src/mixins';
+
+.wrapper {
+  @include mixins.flex-column;
+  background-color: red!important;
+
+  .trigger {
+    @include mixins.box-size(30px, 30px);
+    @include mixins.flex(center, center);
+    cursor: pointer;
+  }
+
+  .dropdown {
+    display: none!important;
+    @include mixins.flex-column;
+    border-radius: 12px 0 12px 12px;
+    background-color: red!important;
+    box-shadow: 0 0 4px 0 var(--text-primary);
+
+
+
+    .content {
+      display: none;
+      background-color: red!important;
+      border-radius: 12px 0 12px 12px;
+      font-size: 30px;
+
+      .item {
+        @include mixins.flex(flex-start, center);
+        @include mixins.box-size(100%, auto);
+        gap: 12px;
+        white-space: nowrap;
+        font-size: 16px;
+        margin: 6px 12px;
+      }
+    }
+
+  }
+
+}
