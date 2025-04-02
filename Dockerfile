@@ -1,7 +1,7 @@
 FROM node:20-alpine AS node
 WORKDIR /app
 COPY server .
-COPY .env.development .
+COPY .env .
 COPY ssl ./ssl
 COPY ssh ./ssh
 RUN npm install

@@ -9,7 +9,7 @@ export default (env: IEnvVariables) => {
         paths: {
             static: env.devServer ? '/' : './',
             ...defaultPaths(__dirname),
-            envFile: path.resolve('..', `.env.${env.mode}`),
+            envFile: path.resolve('..', `.env`),
         },
         devServer: {
             active: env.devServer,

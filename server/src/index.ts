@@ -13,7 +13,7 @@ function Bootstrap() {
 
     app.use(cors());
     app.use(bodyParser());
-    dotenv.config({ path: path.resolve('.env.development') });
+    dotenv.config({ path: path.resolve('.env') });
 
     const server = app.listen(port, () => {
         console.log(`Example app listening on port ${port}`);

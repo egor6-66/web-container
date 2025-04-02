@@ -13,7 +13,7 @@ function container(ws: WS.IWS) {
     const { io, clients } = ws;
     const router = express.Router();
     dotenv.config({
-        path: path.resolve('.env.development'),
+        path: path.resolve('.env'),
     });
 
     router.post('/connect', async (req: any, res: any) => {
