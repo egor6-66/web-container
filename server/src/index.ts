@@ -1,6 +1,8 @@
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import dotenv from 'dotenv';
 import express from 'express';
+import path from 'path';
 
 import routes from './routes';
 import WS from './ws';
@@ -11,6 +13,7 @@ function Bootstrap() {
 
     app.use(cors());
     app.use(bodyParser());
+    dotenv.config({ path: path.resolve('.env.development') });
 
     const server = app.listen(port, () => {
         console.log(`Example app listening on port ${port}`);

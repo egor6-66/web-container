@@ -16,7 +16,7 @@ const Containers = () => {
         { [window.location.origin]: { connected: true } },
         {
             storage: {
-                key: `containers_${process.env.CONTAINER_NAME}`,
+                key: `containers_${process.env.WEB_CONTAINER_NAME}`,
             },
         }
     );
@@ -55,7 +55,7 @@ const Containers = () => {
 
     return (
         <div className={styles.wrapper}>
-            <div className={styles.title}>{`Доступные контейнеры: ${process.env.CONTAINER_NAME}`}</div>
+            <div className={styles.title}>{`Доступные контейнеры: ${process.env.WEB_CONTAINER_NAME}`}</div>
             <div className={styles.addContainer}>
                 <Input {...newContainerInput} />
                 <Button disabled={!newContainerInput.value} style={{ width: 100 }} onClick={handleAdded}>

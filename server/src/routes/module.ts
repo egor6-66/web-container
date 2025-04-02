@@ -6,12 +6,11 @@ import path from 'path';
 
 import * as WS from '../ws';
 
-const pathToModulesDir = path.resolve('..', 'modules');
-const manifestName = 'manifest.json';
-
 function module(ws: WS.IWS) {
     const { io, clients } = ws;
     const router = express.Router();
+    const pathToModulesDir = path.resolve('..', 'modules');
+    const manifestName = 'manifest.json';
 
     router.get('/available_modules', async (req: any, res: any) => {
         try {

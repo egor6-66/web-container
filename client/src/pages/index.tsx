@@ -17,7 +17,7 @@ const Pages = () => {
         <div className={styles.wrapper}>
             <div className={styles.header}>
                 <div>
-                    <div>WEB CONTAINER: {process.env.CONTAINER_NAME}</div>
+                    <div>WEB CONTAINER: {process.env.WEB_CONTAINER_NAME}</div>
                     <div>HOST: {window.location.origin}</div>
                 </div>
                 <AppState operatorName={'EGOR'} />

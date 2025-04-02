@@ -26,7 +26,7 @@ function container(ws: WS.IWS) {
 
         try {
             if (body?.hosts?.length) {
-                await axios.post(`https://${body.hosts[0]}/${process.env.CONTAINER_NAME}/api/connect`, null);
+                await axios.post(`https://${body.hosts[0]}/api/connect`, null);
             }
 
             res.status(200).send(getMsg('remote'));
