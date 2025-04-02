@@ -17,9 +17,9 @@ const GridLayout = (props: IProps) => {
         const defaultData: IData = { layout: [], children: [] };
 
         return items.reduce((acc, item, index) => {
-            acc.layout.push({ ...item.grid, i: item.name });
+            acc.layout.push(item);
             acc.children.push(
-                <div className={styles.item} key={item.name} data-grid={item.grid}>
+                <div className={styles.item} key={item.i} data-grid={item}>
                     {children(item, index)}
                 </div>
             );

@@ -13,21 +13,21 @@ const MainPage = () => {
 
     const widgets = useStateCustom<IGridLayout.Items>(
         [
-            { name: 'containers', grid: { w: 5, h: 5, x: 0, y: 0 } },
-            { name: 'builds_manager', grid: { w: 5, h: 5, x: 5, y: 0 } },
-            { name: 'terminal', grid: { w: 5, h: 5, x: 0, y: 5 } },
-            { name: 'directories', grid: { w: 5, h: 5, x: 5, y: 5 } },
-        ]
-        // {
-        //     storage: {
-        //         key: 'web_container_manager_grid',
-        //     },
-        // }
+            { i: 'containers', w: 5, h: 5, x: 0, y: 0 },
+            { i: 'builds_manager', w: 5, h: 5, x: 5, y: 0 },
+            { i: 'terminal', w: 5, h: 5, x: 0, y: 5 },
+            { i: 'directories', w: 5, h: 5, x: 5, y: 5 },
+        ],
+        {
+            storage: {
+                key: 'web_container_manager_grid',
+            },
+        }
     );
 
     const ws = useWS();
 
-    const handleChangeLayout = (layout: IGridLayout.Items) => {
+    const handleChangeLayout = (layout: any) => {
         widgets.set(layout);
     };
 
@@ -55,9 +55,15 @@ const MainPage = () => {
             </div>
 
             <div className={styles.widgets}>
-                <GridLayout items={widgets.value} className={styles.grid} isDraggable={activeDnD.value} isResizable={activeResize.value}>
+                <GridLayout
+                    items={widgets.value}
+                    className={styles.grid}
+                    isDraggable={activeDnD.value}
+                    isResizable={activeResize.value}
+                    onLayoutChange={handleChangeLayout}
+                >
                     {(item) => {
-                        switch (item.name) {
+                        switch (item.i) {
                             case 'containers':
                                 return <Containers />;
 
