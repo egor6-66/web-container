@@ -9,7 +9,7 @@
 .popover {
   @include mixins.flex-column(center, center);
   background-color: var(--bg-primary);
-  border-radius: 4px;
+  border-radius: var(--border-radius);
   box-shadow: 0 0 6px 0 var(--text-primary);
   overflow: hidden;
 

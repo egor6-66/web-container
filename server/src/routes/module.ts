@@ -14,15 +14,16 @@ function module(ws: WS.IWS) {
 
     router.get('/available_modules', async (req: any, res: any) => {
         try {
-            const modules: any = [];
+            const modules: any = {};
             fs.readdirSync(pathToModulesDir).forEach((module) => {
+                modules[module] = {
+                    builds: [],
+                };
                 const builds = fs.readdirSync(path.join(pathToModulesDir, module));
-
-                if (builds.length) {
-                    const build = fs.readdirSync(path.join(pathToModulesDir, module))[0];
+                builds.forEach((build) => {
                     const manifest = fs.readFileSync(path.join(pathToModulesDir, module, build, manifestName), 'utf8');
-                    modules.push({ manifest: { ...JSON.parse(manifest) }, builds });
-                }
+                    modules[module].builds.push({ manifest: { ...JSON.parse(manifest) }, buildName: build });
+                });
             });
             res.send({ modules });
         } catch (e) {

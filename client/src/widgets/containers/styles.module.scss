@@ -6,7 +6,7 @@
   padding: 12px;
   gap: 18px;
   background-color: var(--bg-primary);
-  border-radius: 12px;
+  border-radius: var(--border-radius);
 
   .title {
     @include mixins.text(var(--text-primary), 16px);
@@ -36,7 +36,7 @@
       }
 
       .connected{
-        background-color: #1BA439;
+        background-color: green;
       }
     }
   }

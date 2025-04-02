@@ -42,15 +42,25 @@ function build(ws: WS.IWS) {
             });
             const archiveFiles = await extractFiles(bodyFile);
 
+            const paths = bodyFile.originalFilename.split('_');
+            const version = paths.pop().split('.').slice(0, -1).join('.');
+            const name = paths.join('_');
+
+            const pathToModule = path.join(pathToModulesDir, name);
+            const pathToBuild = path.join(pathToModule, version);
+
+            if (!fs.existsSync(pathToModule)) {
+                fs.mkdirSync(pathToModule, { recursive: true });
+            }
+
+            if (!fs.existsSync(pathToBuild)) {
+                fs.mkdirSync(pathToBuild, { recursive: true });
+            }
+
             await Promise.each(archiveFiles, async (file: any) => {
-                const dirs = file.path.split('/').slice(0, -1);
-                const dirPath = path.join(pathToModulesDir, ...dirs);
-
-                if (!fs.existsSync(dirPath)) {
-                    fs.mkdirSync(dirPath, { recursive: true });
-                }
-
-                fs.writeFileSync(path.join(dirPath, file.originalFilename), file.buffer);
+                const dirs = file.originalFilename;
+                const dirPath = path.join(pathToBuild, dirs);
+                fs.writeFileSync(dirPath, file.buffer);
             });
             res.status(200).end();
         } catch (e) {

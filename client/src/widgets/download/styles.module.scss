@@ -6,7 +6,7 @@
   padding: 12px;
   gap: 12px;
   background-color: var(--bg-primary);
-  border-radius: 12px;
+  border-radius: var(--border-radius);
 
   .controller {
     @include mixins.box-size(100%, auto);

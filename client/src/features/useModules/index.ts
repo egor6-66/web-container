@@ -46,7 +46,7 @@ function useModules() {
 
     const deleteBuild = () => {
         return useMutation({
-            mutationFn: async (data: { name: string; version: string; msg: string }) => {
+            mutationFn: async (data: any) => {
                 await axios.delete(`/build`, {
                     params: data,
                 });

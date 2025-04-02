@@ -6,7 +6,7 @@
   @include mixins.box-min-size(22px, 22px);
   padding: 6px 12px;
   background-color: #3463E0;
-  border-radius: 4px;
+  border-radius: var(--border-radius);
   color: white;
   font-size: 18px;
   transition: background-color 0.2s;

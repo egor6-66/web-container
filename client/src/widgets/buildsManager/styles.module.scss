@@ -1,0 +1,63 @@
+@use '@packages/styles/src/mixins';
+
+.wrapper {
+  @include mixins.box-size(100%, 100%);
+  @include mixins.flex-column;
+  padding: 12px;
+  gap: 12px;
+  background-color: var(--bg-primary);
+  border-radius: var(--border-radius);
+
+  .title {
+    @include mixins.text(var(--text-primary), 16px);
+  }
+
+  .downloadModule {
+    @include mixins.box-size(100%, auto);
+    @include mixins.flex-column;
+    gap: 12px;
+    background-color: var(--bg-substrate);
+    padding: 12px;
+    border-radius: var(--border-radius);
+
+    .controls {
+      @include mixins.box-size(100%, auto);
+      @include mixins.flex(space-between);
+      gap: 12px;
+    }
+  }
+
+  .modules {
+    @include mixins.box-size(100%, auto);
+    @include mixins.flex-column;
+    gap: 20px;
+
+    .module {
+      @include mixins.box-size(100%, auto);
+      @include mixins.flex-column;
+      background-color: var(--bg-substrate);
+      border-radius: var(--border-radius);
+      padding: 12px;
+      gap: 12px;
+
+      .name{
+        @include mixins.box-size(100%, auto);
+        text-align: center;
+      }
+      .builds {
+        @include mixins.box-size(100%, auto);
+        @include mixins.flex-column;
+        gap: 12px;
+
+        .build {
+          @include mixins.box-size(100%, auto);
+          @include mixins.flex(flex-start, center);
+          @include mixins.text(var(--text-primary), 16px, 700);
+          background-color: var(--bg-primary);
+          padding: 12px;
+          gap: 12px;
+        }
+      }
+    }
+  }
+}

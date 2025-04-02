@@ -7,7 +7,7 @@ export default (env: IEnvVariables) => {
     return configuration({
         mode: env.mode ?? 'development',
         paths: {
-            static: env.devServer ? '/' : './',
+            static: '/',
             ...defaultPaths(__dirname),
             envFile: path.resolve('..', `.env`),
         },
