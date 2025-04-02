@@ -1,17 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useWS } from '@packages/hooks';
 import { GridLayout, IGridLayout } from '@packages/ui';
 
-import { AppState, Containers, Directories, Download, Terminal } from '@/widgets';
+import { AppState, Containers, Directories, Download, VersionManager } from '@/widgets';
 
 import styles from './styles.module.scss';
 
 const Pages = () => {
     const widgets: IGridLayout.Items = [
         { name: 'containers', grid: { w: 5, h: 5, x: 0, y: 0, static: true } },
-        { name: 'terminal', grid: { w: 5, h: 5, x: 5, y: 0, static: true } },
+        { name: 'version_manager', grid: { w: 5, h: 5, x: 5, y: 0, static: true } },
         { name: 'download', grid: { w: 5, h: 5, x: 0, y: 5, static: true } },
         { name: 'directories', grid: { w: 5, h: 5, x: 5, y: 5, static: true } },
     ];
+
+    const ws = useWS();
+
+    useEffect(() => {
+        const listener = ws.listener('receiveMessage', (msg) => {
+            console.log(msg);
+        });
+
+        return () => {
+            listener();
+        };
+    }, []);
 
     return (
         <div className={styles.wrapper}>
@@ -30,8 +43,8 @@ const Pages = () => {
                             case 'containers':
                                 return <Containers />;
 
-                            case 'terminal':
-                                return <Terminal />;
+                            case 'version_manager':
+                                return <VersionManager />;
 
                             case 'download':
                                 return <Download />;

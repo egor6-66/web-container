@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useStateCustom } from '@packages/hooks';
+import { useStateCustom, useWS } from '@packages/hooks';
 import { Button, Input } from '@packages/ui';
 
-import { useTerminal, useWS } from '@/features';
+import { useTerminal } from '@/features';
 
 import styles from './styles.module.scss';
 

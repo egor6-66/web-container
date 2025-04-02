@@ -2,7 +2,7 @@
   "name": "client_web_container",
   "version": "1.0.0",
   "scripts": {
-    "devserver": "webpack serve --env mode=development devServer=true --port 3002",
+    "devserver": "webpack serve --env mode=development devServer=true --port 3000",
     "build:dev": "webpack --env mode=development",
     "build:prod": "webpack --env mode=production",
     "typecheck": "tsc"

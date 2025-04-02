@@ -15,6 +15,7 @@ import useStateCustom from './useStateCustom';
 import useThemes from './useThemes';
 import useTimeoutFn from './useTimeoutFn';
 import useWindowSize from './useWindowSize';
+import useWS from './useWS';
 import useYap, * as IUseYap from './useYap';
 
 export {
@@ -36,6 +37,7 @@ export {
     useTimeoutFn,
     useWindowSize,
     useWindowSizeObserver,
+    useWS,
     useYap,
 };
 

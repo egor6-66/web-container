@@ -35,12 +35,6 @@ const GridLayout = (props: IProps) => {
 
     return (
         <ResponsiveLayout
-            onLayoutChange={(l) => {
-                console.log(l);
-            }}
-            onResize={() => {
-                console.log('res');
-            }}
             maxRows={rows}
             breakpoints={{ lg: 5000 }}
             rowHeight={rowHeight}
@@ -49,13 +43,6 @@ const GridLayout = (props: IProps) => {
             cols={{ lg: cols }}
             layouts={{ lg: data.layout }}
             className={classNames(className, styles.wrapper)}
-            onDragStart={(s) => {
-                console.log(s);
-            }}
-            // preventCollision
-            onDragStop={(e) => {
-                console.log('dw');
-            }}
         >
             {data.children}
         </ResponsiveLayout>

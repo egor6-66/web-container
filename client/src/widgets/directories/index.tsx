@@ -1,8 +1,8 @@
 import React from 'react';
-import { useElementSizeObserver, useStateCustom } from '@packages/hooks';
+import { useElementSizeObserver } from '@packages/hooks';
 import { Dirs } from '@packages/ui';
 
-import { useContainers, useModules } from '@/features';
+import { useContainers } from '@/features';
 
 import styles from './styles.module.scss';
 

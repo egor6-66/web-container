@@ -5,8 +5,6 @@ import { axios } from '@/shared/utils';
 const staleMin = 5;
 
 function useModules() {
-    console.log(window.location);
-
     const getAvailableModules = () => {
         return useQuery<any>({
             queryKey: ['reportsConfig'],

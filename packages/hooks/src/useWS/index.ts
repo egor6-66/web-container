@@ -1,22 +1,18 @@
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import useZustand, { StoreTypes } from 'react-use-zustand';
+import useZustand from 'react-use-zustand';
 import { io, Socket } from 'socket.io-client';
 
-import { IBaseFields } from './interfaces';
 interface IStore {
     ws: Socket;
 }
-const url = window.location.hostname;
 
 const wsStore = useZustand<IStore>({
     keys: ['ws'],
     default: {
-        ws: io(url, {
+        ws: io({
             reconnection: true,
-            path: '/admin/ws_gateway',
+            port: process.env.WEB_CONTAINER_PORT,
+            path: `ws_gateway`,
             transports: ['websocket'],
-            // withCredentials: false,
         }),
     },
 });
