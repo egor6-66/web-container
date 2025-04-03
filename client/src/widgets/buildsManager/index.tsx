@@ -66,12 +66,12 @@ const BuildsManager = () => {
             </div>
             <div className={styles.modules}>
                 {availableModulesData &&
-                    Object.entries(availableModulesData.modules).map(([key, value]: any) =>
-                        value.builds.length ? (
-                            <div className={styles.module} key={key}>
-                                <div className={styles.name}>{key}</div>
+                    availableModulesData.modules.map((i: any) =>
+                        i.builds.length ? (
+                            <div className={styles.module} key={i.name}>
+                                <div className={styles.name}>{i.name}</div>
                                 <div className={styles.builds}>
-                                    {value.builds.map((i: any) => {
+                                    {i.builds.map((i: any) => {
                                         const latest = i.buildName === 'latest';
                                         const url = `${constants.origin}/standalone/${i.manifest.name}/${i.manifest.version}`;
 

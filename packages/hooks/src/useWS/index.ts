@@ -8,7 +8,7 @@ interface IStore {
 const wsStore = useZustand<IStore>({
     keys: ['ws'],
     default: {
-        ws: io(`${window.location.protocol}//${window.location.hostname}:${Number(process.env.WEB_CONTAINER_PORT)}`, {
+        ws: io(`${window.location.origin}`, {
             reconnection: true,
             path: `/ws_gateway`,
         }),

@@ -33,8 +33,7 @@ const MainPage = () => {
         <div className={styles.wrapper}>
             <div className={styles.header}>
                 <div className={styles.containerInfo}>
-                    <div>WEB CONTAINER: {process.env.WEB_CONTAINER_NAME}</div>
-                    <div>HOST: {window.location.hostname + ':' + process.env.WEB_CONTAINER_PORT}</div>
+                    <div>HOST: {window.location.hostname + ':' + window.location.port}</div>
                 </div>
                 <div className={styles.layoutControls}>
                     <div

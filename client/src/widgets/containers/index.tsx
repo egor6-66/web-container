@@ -54,7 +54,7 @@ const Containers = () => {
                 </div>
             </div>
             <div className={styles.servers}>
-                <div>{`Доступные контейнеры: ${process.env.WEB_CONTAINER_NAME}`}</div>
+                <div>Доступные контейнеры</div>
                 <ul className={styles.list}>
                     {containers?.map((container) => (
                         <li key={container.full} className={styles.item}>

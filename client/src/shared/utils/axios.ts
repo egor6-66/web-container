@@ -1,7 +1,7 @@
 import axiosBase from 'axios';
 
 const axios = axiosBase.create({
-    baseURL: `${window.location.protocol}//${window.location.hostname}:${process.env.WEB_CONTAINER_PORT}/api`,
+    baseURL: `${window.location.origin}/api`,
     timeout: 4000,
 });
 

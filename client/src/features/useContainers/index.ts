@@ -19,7 +19,7 @@ const containersStore = useZustand<IStore>({
             {
                 connected: true,
                 host: window.location.hostname,
-                port: process.env.WEB_CONTAINER_PORT,
+                port: window.location.port,
                 full: `${window.location.hostname}:${process.env.WEB_CONTAINER_PORT}`,
             },
         ],
