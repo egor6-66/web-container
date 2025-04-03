@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
-import { useRouting, useWS } from '@packages/hooks';
-import { AnimatePresence, GridLayout, IGridLayout, Navigation } from '@packages/ui';
+import React from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { useRouting } from '@packages/hooks';
+import { AnimatePresence, Navigation } from '@packages/ui';
 
-import { useModules } from '@/features';
-import { AppState, BuildsManager, Containers, Directories, Download } from '@/widgets';
+import { AppState } from '@/widgets';
 
 import InfoPage from './info';
 import MainPage from './main';
@@ -14,14 +13,11 @@ import styles from './styles.module.scss';
 const Pages = () => {
     const { location, navigate, getSegment } = useRouting();
 
-    const { getAvailableModules } = useModules();
-
-    const { data: availableModules } = getAvailableModules();
     const animationKey = getSegment(1);
 
     const pages = [
-        { name: 'main', displayName: 'управление контейнерами', component: <MainPage /> },
-        { name: 'info', displayName: 'информация', component: <InfoPage /> },
+        { name: 'manager/main', displayName: 'управление контейнерами', component: <MainPage /> },
+        { name: 'manager/info', displayName: 'информация', component: <InfoPage /> },
     ];
 
     return (
@@ -32,6 +28,7 @@ const Pages = () => {
             </div>
             <AnimatePresence visible={true} className={styles.content} animationKey={animationKey}>
                 <Routes location={location}>
+                    <Route path={'*'} element={<Navigate to={'/manager/main'} />} />
                     {pages.map((i) => (
                         <Route key={i.name} path={i.name} element={i.component} />
                     ))}
