@@ -8,7 +8,7 @@ function use(props: IUseProps) {
     const inputRef = useRef<HTMLInputElement>(null);
     const [state, setState] = useState(initValue);
     const [errorMessage, setErrorMessage] = useState('');
-    const { string } = useYap();
+    const yap = useYap();
 
     const onChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         let value = e.target.value;
@@ -43,9 +43,9 @@ function use(props: IUseProps) {
         }
     };
 
-    const checkValid = async (cb: (value: string, yap: { string: () => IUseYap.IString }) => Promise<any>) => {
+    const checkValid = async (cb: (value: string, yap: { string: () => IUseYap.IString; number: () => IUseYap.NumberSchema }) => Promise<any>) => {
         return new Promise((resolve, reject) => {
-            cb(state, { string })
+            cb(state, yap)
                 .then(() => {
                     resolve({ error: false, message: '', name });
                 })

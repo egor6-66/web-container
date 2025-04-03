@@ -79,7 +79,11 @@ const BuildsManager = () => {
                                             <div key={i.manifest.version} className={styles.build}>
                                                 <div className={styles.buttons}>
                                                     <div className={styles.version}>v_{i.manifest.version}</div>
-                                                    <Button style={{ backgroundColor: 'green' }} disabled={latest} onClick={() => handleActivate(i)}>
+                                                    <Button
+                                                        style={{ backgroundColor: latest ? 'green' : '' }}
+                                                        disabled={latest}
+                                                        onClick={() => handleActivate(i)}
+                                                    >
                                                         {latest ? 'активна' : 'активировать'}
                                                     </Button>
                                                     <Button

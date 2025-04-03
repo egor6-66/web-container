@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useStateCustom, useWS } from '@packages/hooks';
+import React from 'react';
+import { useStateCustom } from '@packages/hooks';
 import { GridLayout, Icons, IGridLayout } from '@packages/ui';
 import classNames from 'classnames';
 
@@ -25,8 +25,6 @@ const MainPage = () => {
         }
     );
 
-    const ws = useWS();
-
     const handleChangeLayout = (layout: any) => {
         widgets.set(layout);
     };
@@ -36,7 +34,7 @@ const MainPage = () => {
             <div className={styles.header}>
                 <div className={styles.containerInfo}>
                     <div>WEB CONTAINER: {process.env.WEB_CONTAINER_NAME}</div>
-                    <div>HOST: {window.location.origin}</div>
+                    <div>HOST: {window.location.hostname + ':' + process.env.WEB_CONTAINER_PORT}</div>
                 </div>
                 <div className={styles.layoutControls}>
                     <div

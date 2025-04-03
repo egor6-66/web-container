@@ -5,7 +5,7 @@ enum Themes {
     dark = 'dark',
 }
 
-const defaultTheme = Themes.light;
+const defaultTheme = Themes.dark;
 
 function useThemes() {
     const theme = useStateCustom<Themes>(defaultTheme, {

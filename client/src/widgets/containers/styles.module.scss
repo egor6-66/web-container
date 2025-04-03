@@ -13,30 +13,51 @@
   }
 
   .addContainer {
-    @include mixins.box-size(100%, 40px);
-    @include mixins.flex(flex-start, center);
+    @include mixins.box-size(100%, auto);
+    @include mixins.flex-column;
+    padding: 12px;
     gap: 12px;
+    background-color: var(--bg-substrate);
+    border-radius: var(--border-radius);
+
+    .controls {
+      @include mixins.box-size(100%, auto);
+      @include mixins.flex(space-between, center);
+      .inputs {
+        @include mixins.flex(flex-start, center);
+        gap: 12px;
+      }
+    }
   }
 
-  .list {
+  .servers{
     @include mixins.box-size(100%, 100%);
     @include mixins.flex-column;
-    gap: 6px;
+    background-color: var(--bg-substrate);
+    border-radius: var(--border-radius);
+    padding: 12px;
+    gap: 12px;
 
-    .item {
-      @include mixins.box-size(100%, auto);
-      @include mixins.flex(flex-start, center);
-      gap: 12px;
+    .list {
+      @include mixins.box-size(100%, 100%);
+      @include mixins.flex-column;
+      gap: 6px;
 
-      .checkConnect {
-        @include mixins.box-size(18px, 18px);
-        @include mixins.flex(center, center);
-        background-color: red;
-        border-radius: 50%;
-      }
+      .item {
+        @include mixins.box-size(100%, auto);
+        @include mixins.flex(flex-start, center);
+        gap: 12px;
 
-      .connected{
-        background-color: green;
+        .checkConnect {
+          @include mixins.box-size(18px, 18px);
+          @include mixins.flex(center, center);
+          background-color: red;
+          border-radius: 50%;
+        }
+
+        .connected {
+          background-color: green;
+        }
       }
     }
   }

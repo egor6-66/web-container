@@ -1,10 +1,56 @@
-import { useState } from 'react';
-import { useApi } from '@packages/hooks';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import useZustand from 'react-use-zustand';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { axios } from '@/shared/utils';
+interface IContainer {
+    connected: boolean;
+    host: string;
+    port: string;
+    full?: string;
+}
+interface IStore {
+    containers: Array<IContainer>;
+}
+
+const containersStore = useZustand<IStore>({
+    keys: ['containers'],
+    default: {
+        containers: [
+            {
+                connected: true,
+                host: window.location.hostname,
+                port: process.env.WEB_CONTAINER_PORT,
+                full: `${window.location.hostname}:${process.env.WEB_CONTAINER_PORT}`,
+            },
+        ],
+    },
+    forStorage: {
+        all: true,
+        storageName: 'containers',
+    },
+});
 
 function useRContainers() {
+    const containers = containersStore.use.containers();
+
+    const updateContainers = (container: IContainer) => {
+        container.full = `${container.host}:${container.port}`;
+        const foundIndex = containers.value.findIndex((i) => i.full === container.full);
+
+        if (foundIndex === -1) {
+            containers.set([...containers.value, container]);
+        } else {
+            containers.set(containers.value.splice(1, foundIndex, container));
+        }
+
+        // containers.set((prev) => {
+        //     console.log(prev);
+        //     console.log([...prev, container]);
+        //
+        //     return [...prev, container];
+        // });
+    };
+
     const connect = () => {
         return useMutation({
             mutationFn: async (hosts: Array<string>) => {
@@ -34,7 +80,7 @@ function useRContainers() {
             });
     };
 
-    return { connect, getFoldersTree };
+    return { connect, getFoldersTree, containers: containers.value, updateContainers };
 }
 
 export default useRContainers;

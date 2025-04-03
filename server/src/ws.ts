@@ -14,12 +14,15 @@ function WS(server: HTTP.Server) {
         cors: {
             origin: '*',
             methods: ['GET', 'POST'],
-            credentials: false,
         },
         transports: ['polling', 'websocket'],
     });
 
+    io.on('ready', () => {
+        console.log('ready');
+    });
     io.on('connection', (socket) => {
+        console.log('wda');
         clients.add(socket.id);
         socket.on('disconnect', () => {
             console.log('A user disconnected');

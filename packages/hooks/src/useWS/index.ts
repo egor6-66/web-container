@@ -8,11 +8,9 @@ interface IStore {
 const wsStore = useZustand<IStore>({
     keys: ['ws'],
     default: {
-        ws: io({
+        ws: io(`${window.location.protocol}//${window.location.hostname}:${Number(process.env.WEB_CONTAINER_PORT)}`, {
             reconnection: true,
-            port: process.env.WEB_CONTAINER_PORT,
-            path: `ws_gateway`,
-            transports: ['websocket'],
+            path: `/ws_gateway`,
         }),
     },
 });

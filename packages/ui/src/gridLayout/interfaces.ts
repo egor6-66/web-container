@@ -7,7 +7,6 @@ export type IItem = Layout;
 export interface IProps extends ReactGridLayoutProps {
     items: Items;
     children: (item: IItem, index: number) => ReactNode;
-    // className?: string;
 }
 
 export interface IData {

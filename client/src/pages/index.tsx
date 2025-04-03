@@ -20,8 +20,8 @@ const Pages = () => {
     const animationKey = getSegment(1);
 
     const pages = [
-        { name: '/main', displayName: 'управление контейнерами', component: <MainPage /> },
-        { name: '/info', displayName: 'информация', component: <InfoPage /> },
+        { name: 'main', displayName: 'управление контейнерами', component: <MainPage /> },
+        { name: 'info', displayName: 'информация', component: <InfoPage /> },
     ];
 
     return (

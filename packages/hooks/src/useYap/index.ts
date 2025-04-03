@@ -1,4 +1,4 @@
-import { addMethod, string, StringSchema } from 'yup';
+import { addMethod, number, NumberSchema, string, StringSchema } from 'yup';
 
 import validators from './validators';
 
@@ -10,10 +10,12 @@ export interface IString extends StringSchema {
     ipv4: (msg?: string) => any;
 }
 
+export type { NumberSchema };
+
 function useYap() {
     const updString: () => IString = string as any;
 
-    return { string: updString };
+    return { string: updString, number };
 }
 
 export default useYap;

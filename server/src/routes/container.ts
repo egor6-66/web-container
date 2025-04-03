@@ -5,7 +5,6 @@ import fs from 'fs';
 import cmd from 'node-cmd';
 import os from 'os';
 import path from 'path';
-import * as process from 'process';
 
 import * as WS from '../ws';
 
@@ -18,7 +17,6 @@ function container(ws: WS.IWS) {
 
     router.post('/connect', async (req: any, res: any) => {
         const body = req.body;
-        console.log(req.body);
 
         const getMsg = (scope: 'local' | 'remote') => {
             return `successful connection🎉 \nhost: ${body.host}\nos: ${os.type()}\narch: ${os.arch()}\nscope: ${scope}`;
@@ -46,8 +44,6 @@ function container(ws: WS.IWS) {
     });
 
     router.post('/command', async (req: any, res: any) => {
-        const body = req.body;
-
         try {
             cmd.run(req.body.command, function (err, data, stderr) {
                 clients.forEach((i) => {
