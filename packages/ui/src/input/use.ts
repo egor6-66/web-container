@@ -1,14 +1,14 @@
 import { ChangeEvent, InputHTMLAttributes, useCallback, useRef, useState } from 'react';
-import { IUseYap, useDebounce, useYap } from '@packages/hooks';
+import { IUseYup, useDebounce, useYup } from '@packages/hooks';
 
 import { IUseProps } from './interfaces';
 
 function use(props: IUseProps) {
     const { trim, debounceDelay, initValue, debounce, cut, inputAttrs, name, ...moreProps } = props;
     const inputRef = useRef<HTMLInputElement>(null);
-    const [state, setState] = useState(initValue);
+    const [state, setState] = useState(initValue || '');
     const [errorMessage, setErrorMessage] = useState('');
-    const yap = useYap();
+    const yap = useYup();
 
     const onChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         let value = e.target.value;
@@ -43,7 +43,7 @@ function use(props: IUseProps) {
         }
     };
 
-    const checkValid = async (cb: (value: string, yap: { string: () => IUseYap.IString; number: () => IUseYap.NumberSchema }) => Promise<any>) => {
+    const checkValid = async (cb: (value: string, yap: { string: () => IUseYup.IString; number: () => IUseYup.NumberSchema }) => Promise<any>) => {
         return new Promise((resolve, reject) => {
             cb(state, yap)
                 .then(() => {

@@ -48,10 +48,11 @@
       }
 
       .builds {
-        @include mixins.box-size(100%, 100%);
+        @include mixins.box-size(100%, auto);
         @include mixins.flex-column;
         gap: 12px;
         flex-direction: column-reverse;
+
         .build {
           @include mixins.box-size(100%, auto);
           @include mixins.flex-column;

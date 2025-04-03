@@ -14,7 +14,6 @@ const Terminal = () => {
     const commandInput = Input.use({});
     const disabledInput = useStateCustom(false);
     const ws = useWS();
-    const connectState = useStateCustom<'try' | 'connected' | 'disconnect' | 'error'>('disconnect');
 
     const handleKeyPress = (e: any) => {
         if (e.code === 'Enter') {

@@ -12,10 +12,10 @@ export interface IString extends StringSchema {
 
 export type { NumberSchema };
 
-function useYap() {
+function useYup() {
     const updString: () => IString = string as any;
 
     return { string: updString, number };
 }
 
-export default useYap;
+export default useYup;
