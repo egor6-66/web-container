@@ -5,7 +5,7 @@ COPY .env .
 COPY ssl ./ssl
 RUN npm install
 EXPOSE 9808
-CMD ["npm", "run", "start:prod"]
+CMD ["npm", "run", "start:dev"]
 
 
 FROM nginx AS nginx
