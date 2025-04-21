@@ -1,0 +1,98 @@
+{
+  "name": "report",
+  "displayName": "Отчеты",
+  "layout": {
+    "type": "column"
+  },
+  "commonStyle": {
+    "nameStyle": {
+      "width": 60
+    },
+    "wrapperStyle": {
+      "width": 280
+    }
+  },
+  "items": [
+    {
+      "type": "text",
+      "name": "host",
+      "displayName": "host",
+      "placeholder": "хост сервера",
+      "defaultValue": "",
+      "required": true,
+      "validation": {
+        "type": "string",
+        "rules": [
+          {
+            "method": "min",
+            "value": 5,
+            "message": "минимум 5"
+          },
+          {
+            "method": "max",
+            "value": 20,
+            "message": "максимум 20"
+          }
+        ]
+      }
+    },
+    {
+      "type": "text",
+      "name": "port",
+      "displayName": "port",
+      "placeholder": "порт сервера",
+      "defaultValue": "",
+      "required": true,
+      "validation": {
+        "type": "number",
+        "rules": [
+          {
+            "method": "min",
+            "value": 1,
+            "message": "минимум 1"
+          },
+          {
+            "method": "max",
+            "value": 65535,
+            "message": "максимум 65535"
+          }
+        ]
+      }
+    },
+    {
+      "type": "text",
+      "name": "username",
+      "displayName": "userName",
+      "placeholder": "имя юзера",
+      "defaultValue": "",
+      "required": true,
+      "validation": {
+        "type": "string",
+        "rules": [
+          {
+            "method": "email",
+            "message": "невадидный email"
+          }
+        ]
+      }
+    },
+    {
+      "type": "text",
+      "name": "password",
+      "displayName": "password",
+      "placeholder": "пароль",
+      "defaultValue": "",
+      "required": true,
+      "validation": {
+        "type": "string",
+        "rules": [
+          {
+            "method": "min",
+            "value": 5,
+            "message": "минимум 5"
+          }
+        ]
+      }
+    }
+  ]
+}

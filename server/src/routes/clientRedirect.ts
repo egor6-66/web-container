@@ -13,6 +13,7 @@ function clientRedirect() {
             case 'GET':
                 try {
                     const extRes = await axios.get(url, { params });
+
                     res.status(200).send(extRes.data);
                 } catch (e) {
                     res.status(500).end(e.message);
@@ -23,6 +24,29 @@ function clientRedirect() {
             case 'POST':
                 try {
                     const extRes = await axios.post(url, data);
+
+                    res.status(200).send(extRes.data);
+                } catch (e) {
+                    res.status(500).end(e.message);
+                }
+
+                break;
+
+            case 'PUT':
+                try {
+                    const extRes = await axios.put(url, data);
+
+                    res.status(200).send(extRes.data);
+                } catch (e) {
+                    res.status(500).end(e.message);
+                }
+
+                break;
+
+            case 'DELETE':
+                try {
+                    const extRes = await axios.delete(url, { params });
+
                     res.status(200).send(extRes.data);
                 } catch (e) {
                     res.status(500).end(e.message);

@@ -1,0 +1,63 @@
+{
+  "name": "template",
+  "displayName": "Шаблоны",
+  "layout": {
+    "type": "column"
+  },
+  "commonStyle": {
+    "nameStyle": {
+      "width": 60
+    },
+    "wrapperStyle": {
+      "width": 280
+    }
+  },
+  "items": [
+    {
+      "type": "text",
+      "name": "name",
+      "displayName": "айди",
+      "placeholder": "айди шаблона",
+      "defaultValue": "",
+      "required": true
+    },
+    {
+      "type": "text",
+      "name": "displayName",
+      "displayName": "название",
+      "placeholder": "название шаблона",
+      "defaultValue": "",
+      "required": true
+    },
+    {
+      "type": "text",
+      "name": "mailSubject",
+      "displayName": "тема",
+      "placeholder": "тема шаблона",
+      "defaultValue": "",
+      "required": true
+    },
+    {
+      "type": "text",
+      "name": "mailBody",
+      "displayName": "контент",
+      "placeholder": "контент шаблона",
+      "defaultValue": "",
+      "required": true
+    },
+    {
+      "type": "submit",
+      "name": "add",
+      "displayName": "добавить",
+      "action": "create",
+      "mode": "create"
+    },
+    {
+      "type": "submit",
+      "name": "update",
+      "displayName": "изменить",
+      "action": "update",
+      "mode": "update"
+    }
+  ]
+}
