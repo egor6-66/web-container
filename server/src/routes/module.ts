@@ -27,7 +27,7 @@ function module(ws: WS.IWS) {
                 });
                 modules.push(newModule);
             });
-            res.send({ modules });
+            res.send(modules);
         } catch (e) {
             res.status(500).end(e.message);
         }
@@ -40,7 +40,7 @@ function module(ws: WS.IWS) {
             const build = fs.readdirSync(path.join(pathToModulesDir, name))[0];
             // const manifest = fs.readFileSync(path.join(pathToModulesDir, name, build, manifestName), 'utf8');
             // res.send({ manifest: JSON.parse(manifest), builds });
-            res.send({ builds });
+            res.send(builds);
         } catch (e) {
             res.status(500).end(e.message);
         }
