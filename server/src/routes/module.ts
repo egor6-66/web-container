@@ -21,8 +21,9 @@ function module(ws: WS.IWS) {
 
                 const builds = fs.readdirSync(path.join(pathToModulesDir, module));
                 builds.forEach((build) => {
-                    const manifest = fs.readFileSync(path.join(pathToModulesDir, module, build, manifestName), 'utf8');
-                    newModule.builds.push({ manifest: { ...JSON.parse(manifest) }, buildName: build });
+                    newModule.builds.push(build);
+                    // const manifest = fs.readFileSync(path.join(pathToModulesDir, module, build, manifestName), 'utf8');
+                    // newModule.builds.push({ manifest: { ...JSON.parse(manifest) }, buildName: build });
                 });
                 modules.push(newModule);
             });
@@ -37,8 +38,9 @@ function module(ws: WS.IWS) {
             const { name } = req.query;
             const builds = fs.readdirSync(path.join(pathToModulesDir, name));
             const build = fs.readdirSync(path.join(pathToModulesDir, name))[0];
-            const manifest = fs.readFileSync(path.join(pathToModulesDir, name, build, manifestName), 'utf8');
-            res.send({ manifest: JSON.parse(manifest), builds });
+            // const manifest = fs.readFileSync(path.join(pathToModulesDir, name, build, manifestName), 'utf8');
+            // res.send({ manifest: JSON.parse(manifest), builds });
+            res.send({ builds });
         } catch (e) {
             res.status(500).end(e.message);
         }
