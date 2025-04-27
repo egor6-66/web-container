@@ -8,24 +8,26 @@ function module(ws: WS.IWS) {
     const { io, clients } = ws;
     const router = express.Router();
     const pathToModulesDir = path.resolve('..', 'modules');
-    const manifestName = 'manifest.json';
+    const pgPath = 'package.json';
 
     router.get('/available_modules', async (req: any, res: any) => {
         try {
             const modules: any = [];
             fs.readdirSync(pathToModulesDir).forEach((module) => {
-                const newModule: any = {
-                    builds: [],
-                    name: module,
-                };
+                if (module !== 'host') {
+                    const newModule: any = {
+                        builds: [],
+                        name: module,
+                    };
 
-                const builds = fs.readdirSync(path.join(pathToModulesDir, module));
-                builds.forEach((build) => {
-                    newModule.builds.push(build);
-                    // const manifest = fs.readFileSync(path.join(pathToModulesDir, module, build, manifestName), 'utf8');
-                    // newModule.builds.push({ manifest: { ...JSON.parse(manifest) }, buildName: build });
-                });
-                modules.push(newModule);
+                    const builds = fs.readdirSync(path.join(pathToModulesDir, module));
+                    builds.forEach((build) => {
+                        newModule.builds.push(build);
+                        const manifest = fs.readFileSync(path.join(pathToModulesDir, module, build, pgPath), 'utf8');
+                        newModule.builds.push({ manifest: { ...JSON.parse(manifest) }, buildName: build });
+                    });
+                    modules.push(newModule);
+                }
             });
             res.send(modules);
         } catch (e) {
@@ -38,8 +40,8 @@ function module(ws: WS.IWS) {
             const { name } = req.query;
             const builds = fs.readdirSync(path.join(pathToModulesDir, name));
             const build = fs.readdirSync(path.join(pathToModulesDir, name))[0];
-            // const manifest = fs.readFileSync(path.join(pathToModulesDir, name, build, manifestName), 'utf8');
-            // res.send({ manifest: JSON.parse(manifest), builds });
+            const manifest = fs.readFileSync(path.join(pathToModulesDir, name, build, pgPath), 'utf8');
+            res.send({ manifest: JSON.parse(manifest), builds });
             res.send(builds);
         } catch (e) {
             res.status(500).end(e.message);
