@@ -6,7 +6,7 @@
   },
   "commonStyle": {
     "nameStyle": {
-      "width": 60
+      "width": 76
     },
     "wrapperStyle": {
       "width": 280
@@ -16,26 +16,35 @@
     {
       "type": "text",
       "name": "name",
-      "displayName": "айди",
-      "placeholder": "айди шаблона",
+      "displayName": "название",
+      "placeholder": "название шаблона",
       "defaultValue": "",
-      "required": true
+      "required": true,
+      "validation": {
+        "type": "string"
+      }
     },
     {
       "type": "text",
       "name": "displayName",
-      "displayName": "название",
-      "placeholder": "название шаблона",
+      "displayName": "заголовок",
+      "placeholder": "заголовок шаблона",
       "defaultValue": "",
-      "required": true
+      "required": true,
+      "validation": {
+        "type": "string"
+      }
     },
     {
       "type": "text",
       "name": "mailSubject",
-      "displayName": "тема",
-      "placeholder": "тема шаблона",
+      "displayName": "описание",
+      "placeholder": "описание шаблона",
       "defaultValue": "",
-      "required": true
+      "required": true,
+      "validation": {
+        "type": "string"
+      }
     },
     {
       "type": "text",
@@ -43,7 +52,10 @@
       "displayName": "контент",
       "placeholder": "контент шаблона",
       "defaultValue": "",
-      "required": true
+      "required": true,
+      "validation": {
+        "type": "string"
+      }
     },
     {
       "type": "submit",

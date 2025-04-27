@@ -6,92 +6,182 @@
   },
   "commonStyle": {
     "nameStyle": {
-      "width": 60
+      "width": 146
     },
     "wrapperStyle": {
-      "width": 280
+      "width": 360
     }
   },
   "items": [
     {
       "type": "text",
-      "name": "host",
-      "displayName": "host",
-      "placeholder": "хост сервера",
+      "name": "name",
+      "displayName": "название",
+      "placeholder": "название шаблона",
       "defaultValue": "",
       "required": true,
       "validation": {
-        "type": "string",
-        "rules": [
-          {
-            "method": "min",
-            "value": 5,
-            "message": "минимум 5"
-          },
-          {
-            "method": "max",
-            "value": 20,
-            "message": "максимум 20"
-          }
-        ]
+        "type": "string"
       }
     },
     {
       "type": "text",
-      "name": "port",
-      "displayName": "port",
-      "placeholder": "порт сервера",
+      "name": "displayName",
+      "displayName": "заголовок",
+      "placeholder": "заголовок шаблона",
       "defaultValue": "",
       "required": true,
       "validation": {
-        "type": "number",
-        "rules": [
-          {
-            "method": "min",
-            "value": 1,
-            "message": "минимум 1"
-          },
-          {
-            "method": "max",
-            "value": 65535,
-            "message": "максимум 65535"
-          }
-        ]
+        "type": "string"
       }
     },
     {
-      "type": "text",
-      "name": "username",
-      "displayName": "userName",
-      "placeholder": "имя юзера",
+      "type": "select",
+      "name": "period",
+      "displayName": "переод",
+      "placeholder": "переод времени",
       "defaultValue": "",
       "required": true,
+      "selectOnly": true,
+      "options": {
+        "options": "/http://172.16.211.140:8082/api/v1/mail/report/dictionaries/periods",
+        "displayKey": "displayName",
+        "payloadKey": "name"
+      },
       "validation": {
-        "type": "string",
-        "rules": [
-          {
-            "method": "email",
-            "message": "невадидный email"
-          }
-        ]
+        "type": "string"
       }
     },
     {
-      "type": "text",
-      "name": "password",
-      "displayName": "password",
-      "placeholder": "пароль",
+      "type": "select",
+      "name": "recipients",
+      "displayName": "получатель",
+      "placeholder": "выбирите получателя",
+      "defaultValue": "",
+      "required": true,
+      "selectOnly": true,
+      "options": {
+        "options": "/http://172.16.211.140:8082/api/v1/recipient",
+        "pathToArray": "content",
+        "displayKey": "email",
+        "payloadKey": "id"
+      },
+      "validation": {
+        "type": "string"
+      }
+    },
+    {
+      "type": "select",
+      "name": "mailTemplate",
+      "displayName": "шаблон",
+      "placeholder": "выбирите шаблон",
+      "defaultValue": "",
+      "required": true,
+      "selectOnly": true,
+      "options": {
+        "options": "/http://172.16.211.140:8082/api/v1/mail/letter/template",
+        "pathToArray": "content",
+        "displayKey": "displayName",
+        "payloadKey": "id"
+      },
+      "validation": {
+        "type": "string"
+      }
+    },
+    {
+      "type": "select",
+      "name": "mailSenderConfiguration",
+      "displayName": "конфигурация",
+      "placeholder": "выбирите конфигурацию",
+      "defaultValue": "",
+      "required": true,
+      "selectOnly": true,
+      "options": {
+        "options": "/http://172.16.211.140:8082/api/v1/mail/sender/configuration",
+        "pathToArray": "content",
+        "displayKey": "host",
+        "payloadKey": "id"
+      },
+      "validation": {
+        "type": "string"
+      }
+    },
+    {
+      "type": "select",
+      "name": "integrationSystemName",
+      "displayName": "система интеграции",
+      "placeholder": "выбирите интеграцию",
+      "defaultValue": "",
+      "required": true,
+      "options": [],
+      "validation": {
+        "type": "string"
+      }
+    },
+    {
+      "type": "date",
+      "name": "integrationEndpointName",
+      "displayName": "переод интеграции",
+      "placeholder": "выбирите переод",
       "defaultValue": "",
       "required": true,
       "validation": {
-        "type": "string",
-        "rules": [
-          {
-            "method": "min",
-            "value": 5,
-            "message": "минимум 5"
-          }
-        ]
+        "type": "string"
+      }
+    },
+    {
+      "type": "select",
+      "name": "attachmentNamePattern",
+      "displayName": "паттерн",
+      "placeholder": "выбирите паттерн",
+      "defaultValue": "",
+      "required": true,
+      "options": [],
+      "validation": {
+        "type": "string"
+      }
+    },
+    {
+      "type": "select",
+      "name": "resultProcessingType",
+      "displayName": "процесс",
+      "placeholder": "выбирите процесс",
+      "defaultValue": "",
+      "required": true,
+      "options": [],
+      "validation": {
+        "type": "string"
+      }
+    },
+    {
+      "type": "date",
+      "name": "scheduledTime",
+      "displayName": "время",
+      "placeholder": "выбирите время",
+      "defaultValue": "",
+      "required": true,
+      "validation": {
+        "type": "string"
+      }
+    },
+    {
+      "type": "checkbox",
+      "name": "enabled",
+      "displayName": "разблокирован",
+      "defaultValue": "",
+      "required": true,
+      "validation": {
+        "type": "string"
+      }
+    },
+    {
+      "type": "submit",
+      "name": "add",
+      "displayName": "добавить",
+      "action": "create",
+      "mode": "create",
+      "validation": {
+        "type": "string"
       }
     }
   ]

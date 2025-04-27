@@ -1,0 +1,79 @@
+{
+  "name": "testSend",
+  "commonStyle": {
+    "nameStyle": {
+      "width": 106
+    },
+    "wrapperStyle": {
+      "width": 360
+    }
+  },
+  "items": [
+    {
+      "type": "section",
+      "name": "sendWithFields",
+      "items": [
+        {
+          "type": "select",
+          "name": "senderId",
+          "displayName": "конфигурация",
+          "placeholder": "выбирите конфигурацию",
+          "defaultValue": "",
+          "required": true,
+          "selectOnly": true,
+          "options": {
+            "options": "/http://172.16.211.140:8082/api/v1/mail/sender/configuration",
+            "pathToArray": "content",
+            "displayKey": "host",
+            "payloadKey": "id"
+          },
+          "validation": {
+            "type": "string"
+          }
+        },
+        {
+          "type": "select",
+          "name": "recipientId",
+          "displayName": "получатель",
+          "placeholder": "выбирите получателя",
+          "defaultValue": "",
+          "required": true,
+          "selectOnly": true,
+          "options": {
+            "options": "/http://172.16.211.140:8082/api/v1/recipient",
+            "pathToArray": "content",
+            "displayKey": "email",
+            "payloadKey": "id"
+          },
+          "validation": {
+            "type": "string"
+          }
+        },
+        {
+          "type": "select",
+          "name": "templateId",
+          "displayName": "шаблон",
+          "placeholder": "выбирите шаблон",
+          "defaultValue": "",
+          "required": true,
+          "selectOnly": true,
+          "options": {
+            "options": "/http://172.16.211.140:8082/api/v1/mail/letter/template",
+            "pathToArray": "content",
+            "displayKey": "displayName",
+            "payloadKey": "id"
+          },
+          "validation": {
+            "type": "string"
+          }
+        },
+        {
+          "type": "submit",
+          "name": "sendWithFields",
+          "displayName": "отправить",
+          "action": "sendWithFields"
+        }
+      ]
+    }
+  ]
+}
