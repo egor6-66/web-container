@@ -14,6 +14,36 @@
   },
   "items": [
     {
+      "type": "section",
+      "name": "updateActions",
+      "layout": {
+        "type": "row"
+      },
+      "state": {
+        "visible": "mode === 'preview' || mode === 'update'"
+      },
+      "items": [
+        {
+          "type": "icon",
+          "name": "update",
+          "icon": "edit",
+          "method": "setMode(mode === 'preview' ? 'update' : 'preview')",
+          "state": {
+            "active": "mode === 'update'"
+          }
+        },
+        {
+          "type": "icon",
+          "name": "delete",
+          "icon": "remove",
+          "action": "delete",
+          "state": {
+            "visible": "mode === 'update'"
+          }
+        }
+      ]
+    },
+    {
       "type": "text",
       "name": "email",
       "displayName": "email",
@@ -22,27 +52,28 @@
       "required": true,
       "validation": {
         "type": "string",
-        "rules": [
-          {
-            "method": "email",
-            "message": "невалидный email"
-          }
-        ]
+        "pattern": "mail"
       }
     },
     {
-      "type": "submit",
-      "name": "add",
+      "type": "button",
+      "name": "addBtn",
       "displayName": "добавить",
       "action": "create",
-      "mode": "create"
+      "state": {
+        "visible": "mode === 'create'",
+        "disabled": "!isValid"
+      }
     },
     {
-      "type": "submit",
-      "name": "update",
+      "type": "button",
+      "name": "updateBtn",
       "displayName": "изменить",
       "action": "update",
-      "mode": "update"
+      "state": {
+        "visible": "mode === 'update'",
+        "disabled": "!isDirty || !isValid"
+      }
     }
   ]
 }

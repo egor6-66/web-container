@@ -1,0 +1,48 @@
+{
+  "name": "recipient",
+  "displayName": "Получатели",
+  "layout": {
+    "type": "column"
+  },
+  "commonStyle": {
+    "nameStyle": {
+      "width": 60
+    },
+    "wrapperStyle": {
+      "width": 280
+    }
+  },
+  "items": [
+    {
+      "type": "text",
+      "name": "email",
+      "displayName": "email",
+      "placeholder": "email",
+      "defaultValue": "",
+      "required": true,
+      "validation": {
+        "type": "string",
+        "rules": [
+          {
+            "method": "email",
+            "message": "невалидный email"
+          }
+        ]
+      }
+    },
+    {
+      "type": "submit",
+      "name": "add",
+      "displayName": "добавить",
+      "action": "create",
+      "mode": "create"
+    },
+    {
+      "type": "submit",
+      "name": "update",
+      "displayName": "изменить",
+      "action": "update",
+      "mode": "update"
+    }
+  ]
+}

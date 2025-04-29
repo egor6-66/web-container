@@ -1,0 +1,75 @@
+{
+  "name": "template",
+  "displayName": "Шаблоны",
+  "layout": {
+    "type": "column"
+  },
+  "commonStyle": {
+    "nameStyle": {
+      "width": 76
+    },
+    "wrapperStyle": {
+      "width": 280
+    }
+  },
+  "items": [
+    {
+      "type": "text",
+      "name": "name",
+      "displayName": "название",
+      "placeholder": "название шаблона",
+      "defaultValue": "",
+      "required": true,
+      "validation": {
+        "type": "string"
+      }
+    },
+    {
+      "type": "text",
+      "name": "displayName",
+      "displayName": "заголовок",
+      "placeholder": "заголовок шаблона",
+      "defaultValue": "",
+      "required": true,
+      "validation": {
+        "type": "string"
+      }
+    },
+    {
+      "type": "text",
+      "name": "mailSubject",
+      "displayName": "описание",
+      "placeholder": "описание шаблона",
+      "defaultValue": "",
+      "required": true,
+      "validation": {
+        "type": "string"
+      }
+    },
+    {
+      "type": "text",
+      "name": "mailBody",
+      "displayName": "контент",
+      "placeholder": "контент шаблона",
+      "defaultValue": "",
+      "required": true,
+      "validation": {
+        "type": "string"
+      }
+    },
+    {
+      "type": "submit",
+      "name": "add",
+      "displayName": "добавить",
+      "action": "create",
+      "mode": "create"
+    },
+    {
+      "type": "submit",
+      "name": "update",
+      "displayName": "изменить",
+      "action": "update",
+      "mode": "update"
+    }
+  ]
+}

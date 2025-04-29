@@ -10,6 +10,7 @@ services:
       - ./modules:/modules
       - ./configs:/configs
       - ./storage:/storage
+      - ./server:/server
 
   nginx:
     build:
