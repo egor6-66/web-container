@@ -184,7 +184,7 @@
       }
     },
     {
-      "type": "date",
+      "type": "time",
       "name": "scheduledTime",
       "displayName": "время",
       "placeholder": "выберите время",

@@ -68,6 +68,7 @@
       "name": "sendWithFields",
       "displayName": "отправить",
       "action": "sendWithFields",
+      "method": "reset()",
       "state": {
         "disabled": "!isValid"
       }
