@@ -15,23 +15,15 @@ const Pages = () => {
 
     const animationKey = getSegment(1);
 
-    const pages = [
-        { name: 'manager/main', displayName: 'управление контейнерами', component: <MainPage /> },
-        { name: 'manager/info', displayName: 'информация', component: <InfoPage /> },
-    ];
-
     return (
         <div className={styles.wrapper}>
-            <div className={styles.header}>
-                <Navigation items={pages} handleNavClick={(item: any) => navigate(item.name)} />
-                <AppState operatorName={'WEB_CONTAINER'} />
-            </div>
+            {/*<div className={styles.header}>*/}
+            {/*    <AppState operatorName={'WEB_CONTAINER'} />*/}
+            {/*</div>*/}
             <AnimatePresence visible={true} className={styles.content} animationKey={animationKey}>
                 <Routes location={location}>
-                    <Route path={'*'} element={<Navigate to={'/manager/main'} />} />
-                    {pages.map((i) => (
-                        <Route key={i.name} path={i.name} element={i.component} />
-                    ))}
+                    <Route path={'*'} element={<Navigate to={'/manager'} />} />
+                    <Route path={'/manager'} element={<MainPage />} />
                 </Routes>
             </AnimatePresence>
         </div>

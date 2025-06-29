@@ -1,18 +1,17 @@
-import express from 'express';
+import { Application } from 'express';
 
-import * as WS from '../ws';
+import { IWS, WS } from '../utils';
 
-import build from './build';
+import localModules from './modules/localModules';
+import modules from './modules/modules';
+import remoteModules from './modules/remoteModules';
 import container from './container';
-import module from './module';
 
-function routes(ws: WS.IWS) {
-    const router = express.Router();
-    router.use(build(ws));
-    router.use(module(ws));
-    router.use(container(ws));
-
-    return router;
+function routes(app: Application, ws: IWS) {
+    app.use('/modules', modules(ws));
+    app.use('/containers', container(ws));
+    app.use('/local_modules', localModules(ws));
+    app.use('/remote_modules', remoteModules(ws));
 }
 
 export default routes;

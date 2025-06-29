@@ -1,0 +1,20 @@
+{
+  "mail-sender": {
+    "name": "mail-sender",
+    "type": "local",
+    "latest": {},
+    "versions": []
+  },
+  "map": {
+    "name": "map",
+    "type": "remote",
+    "latest": {},
+    "versions": []
+  },
+  "counter": {
+    "name": "counter",
+    "type": "local",
+    "latest": {},
+    "versions": []
+  }
+}

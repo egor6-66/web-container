@@ -6,14 +6,11 @@ import cmd from 'node-cmd';
 import os from 'os';
 import path from 'path';
 
-import * as WS from '../ws';
+import * as WS from '../utils/ws';
 
 function container(ws: WS.IWS) {
     const { io, clients } = ws;
     const router = express.Router();
-    dotenv.config({
-        path: path.resolve('.env'),
-    });
 
     router.post('/connect', async (req: any, res: any) => {
         const body = req.body;

@@ -3,7 +3,7 @@ import { useStateCustom } from '@packages/hooks';
 import { GridLayout, Icons, IGridLayout } from '@packages/ui';
 import classNames from 'classnames';
 
-import { BuildsManager, Containers, Directories, Terminal } from '@/widgets';
+import { Containers, Directories, Modules, Terminal } from '@/widgets';
 
 import styles from './styles.module.scss';
 
@@ -14,7 +14,7 @@ const MainPage = () => {
     const widgets = useStateCustom<IGridLayout.Items>(
         [
             { i: 'containers', w: 5, h: 5, x: 0, y: 0 },
-            { i: 'builds_manager', w: 5, h: 5, x: 5, y: 0 },
+            { i: 'modules', w: 5, h: 5, x: 5, y: 0 },
             { i: 'terminal', w: 5, h: 5, x: 0, y: 5 },
             { i: 'directories', w: 5, h: 5, x: 5, y: 5 },
         ],
@@ -64,8 +64,8 @@ const MainPage = () => {
                             case 'containers':
                                 return <Containers />;
 
-                            case 'builds_manager':
-                                return <BuildsManager />;
+                            case 'modules':
+                                return <Modules />;
 
                             case 'terminal':
                                 return <Terminal />;

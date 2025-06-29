@@ -5,14 +5,24 @@ import { axios } from '@/shared/utils';
 const staleMin = 5;
 
 function useModules() {
-    const getAvailableModules = () => {
+    const getModules = () => {
         return useQuery<any>({
-            queryKey: ['reportsConfig'],
+            queryKey: ['availableModules'],
             staleTime: 1000 * 60 * staleMin,
             queryFn: async () => {
-                const { data } = await axios.get(`/available_modules`);
+                const { data } = await axios.get(`/modules`);
 
                 return data;
+            },
+        });
+    };
+
+    const addRemoteModuleUrl = () => {
+        return useMutation({
+            mutationFn: async (data: { url: string }) => {
+                await axios.post(`/remote_modules`, data);
+
+                return {};
             },
         });
     };
@@ -20,26 +30,9 @@ function useModules() {
     const downloadModule = () => {
         return useMutation({
             mutationFn: async (data: { file: FormData; msg: string }) => {
-                await axios.post(`/build`, data);
+                await axios.post(`/local_modules`, data);
 
                 return {};
-            },
-        });
-    };
-
-    const getModule = (name?: string) => {
-        return useQuery<any>({
-            queryKey: ['module', name],
-            staleTime: 1000 * 60 * staleMin,
-            enabled: !!name,
-            queryFn: async () => {
-                const { data } = await axios.get(`/module`, {
-                    params: {
-                        name,
-                    },
-                });
-
-                return data;
             },
         });
     };
@@ -47,17 +40,17 @@ function useModules() {
     const activate = () => {
         return useMutation({
             mutationFn: async (data: any) => {
-                await axios.post(`/activate`, data);
+                await axios.post(`/modules/activate`, data);
 
                 return {};
             },
         });
     };
 
-    const deleteBuild = () => {
+    const removeLocalModule = () => {
         return useMutation({
             mutationFn: async (data: any) => {
-                await axios.delete(`/build`, {
+                await axios.delete(`/local_modules`, {
                     params: data,
                 });
 
@@ -66,7 +59,19 @@ function useModules() {
         });
     };
 
-    return { getAvailableModules, downloadModule, getModule, deleteBuild, activate };
+    const removeRemoteModule = () => {
+        return useMutation({
+            mutationFn: async (data: any) => {
+                await axios.delete(`/remote_modules`, {
+                    params: data,
+                });
+
+                return {};
+            },
+        });
+    };
+
+    return { getModules, downloadModule, removeLocalModule, activate, addRemoteModuleUrl, removeRemoteModule };
 }
 
 export default useModules;

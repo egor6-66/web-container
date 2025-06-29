@@ -22,10 +22,12 @@ const InputBase = forwardRef((props: IProps, ref: any) => {
 
     return (
         <div id={id} className={wrapperClasses} data-disabled={disabled} style={wrapperStyle}>
-            <span className={styles.name} style={{ ...nameStyle }}>
-                {displayName}
-                <span className={styles.requiredIcon}>{required && <Icons icon={'required'} />}</span>
-            </span>
+            {displayName && (
+                <span className={styles.name} style={{ ...nameStyle }}>
+                    {displayName}
+                    <span className={styles.requiredIcon}>{required && <Icons icon={'required'} />}</span>
+                </span>
+            )}
             <div className={inputWrapperClasses}>
                 <AnimatePresence visible={!!errorMessage} className={styles.errorMessage}>
                     {errorMessage}

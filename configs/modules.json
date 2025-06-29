@@ -1,0 +1,33 @@
+{
+  "map": {
+    "name": "map",
+    "type": "remote",
+    "latest": {},
+    "versions": []
+  },
+  "mail-sender": {
+    "name": "mail-sender",
+    "type": "local",
+    "latest": {
+      "url": "https://localhost:9999/modules/mail-sender/1.1.0",
+      "version": "1.1.0"
+    },
+    "versions": [
+      {
+        "url": "https://localhost:9999/modules/mail-sender/1.1.0",
+        "version": "1.1.0"
+      }
+    ]
+  },
+  "counter": {
+    "name": "counter",
+    "type": "local",
+    "latest": {},
+    "versions": [
+      {
+        "url": "https://localhost:9999/modules/counter/1.1.0",
+        "version": "1.1.0"
+      }
+    ]
+  }
+}

@@ -1,7 +1,10 @@
 import axiosBase from 'axios';
 
+import { origin } from './constants';
+
 const axios = axiosBase.create({
-    baseURL: `${window.location.origin}/api`,
+    baseURL: `${origin}/api`,
+
     timeout: 4000,
 });
 

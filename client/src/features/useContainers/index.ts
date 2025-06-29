@@ -54,7 +54,7 @@ function useRContainers() {
     const connect = () => {
         return useMutation({
             mutationFn: async (hosts: Array<string>) => {
-                const { data } = await axios.post(`/connect`, { hosts });
+                const { data } = await axios.post(`/containers/connect`, { hosts });
 
                 return data;
             },
@@ -68,14 +68,14 @@ function useRContainers() {
             queryClient.ensureQueryData({
                 queryKey: ['folders_tree', host, path],
                 queryFn: async () => {
-                    const { data } = await axios.get(`/folders_tree`, {
+                    const { data } = await axios.get(`/containers/folders_tree`, {
                         params: {
                             host,
                             path,
                         },
                     });
 
-                    return data as any;
+                    return data;
                 },
             });
     };

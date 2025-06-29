@@ -1,10 +1,13 @@
 FROM node:20-alpine AS node
-WORKDIR /app
-COPY server .
+WORKDIR ./app
 COPY .env .
 COPY ssl ./ssl
+
+RUN mkdir intermediate
+
+WORKDIR ./server
+COPY server .
 RUN npm install
-EXPOSE 9808
 CMD ["npm", "run", "start:dev"]
 
 
